@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HelloWorld : MonoBehaviour
+public class PlayerCtrl : MonoBehaviour
 {
-    // Start is called before the first frame update !
+    void Awake()
+    {
+    }
+
+    // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Hello World!!!");
     }
 
     // Update is called once per frame

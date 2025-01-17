@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "SpaceShooter.sln"
+    "dotnet.defaultSolution": "SpaceShooter-1.sln"
 }
