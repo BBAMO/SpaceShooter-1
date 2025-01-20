@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    void Awake()
-    {
-    }
+    //컴포넌트를 캐시 처리할 변수
+    private Transform tr;
 
-    // Start is called before the first frame update
     void Start()
     {
+        tr = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float h = Input.GetAxis("Horizontal"); // -1.0f ~ 0.0f ~ +1.0f
+        float v = Input.GetAxis("Vertical"); // -1.0f ~ 0.0f ~ +1.0f
+
+        Debug.Log("h=" + h);
+        Debug.Log("v=" + v);
+
+        // Transform 컴포넌트의 position 속성값을 변경
+        //transform.position += new Vector3(0, 0, 1);
+
+        //정규화 벡터를 이용한 코드
+        tr.position += Vector3.forward * 1;
     }
 }
