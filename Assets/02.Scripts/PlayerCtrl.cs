@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerCtrl : MonoBehaviour
     //[SerializeField] - 접근해야 하는 컴포넌트는 반드시 변수에 할당한 후 사용
     private Transform tr;
     //이동속도 변수(public으로 선언되어 인스펙터 뷰에 노출)
+
+    private Animation anim;
     public float moveSpeed = 10.0f;
 
     public float turnSpeed = 80.0f;
@@ -15,6 +18,9 @@ public class PlayerCtrl : MonoBehaviour
     void Start()
     {
         tr = GetComponent<Transform>();
+        anim = GetComponent<Animation>();
+
+        anim.Play("Idle");
     }
 
     void Update()
@@ -36,5 +42,31 @@ public class PlayerCtrl : MonoBehaviour
         tr.Translate(moveDir.normalized * moveSpeed * Time.deltaTime);
 
         tr. Rotate(Vector3.up * turnSpeed * Time.deltaTime * r);
+
+        PlayerAnim(h, v);
+    }
+
+    void PlayerAnim(float h, float v)
+    {
+        if (v >= 0.1f)
+        {
+            anim.CrossFade("RunF", 0.25f);
+        }
+        else if (v <= -0.1f)
+        {
+            anim.CrossFade("RunB", 0.25f);
+        }
+        else if (h >= 0.1f)
+        {
+            anim.CrossFade("RunR", 0.25f);
+        }
+        else if ( h <= -0.1f)
+        {
+            anim.CrossFade("RunL", 0.25f);
+        }
+        else
+        {
+            anim.CrossFade("Idle", 0.25f);
+        }
     }
 }
